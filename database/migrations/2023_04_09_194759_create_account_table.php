@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('account', function (Blueprint $table) {
             $table->id();
             $table->double('balance');
+            $table->bigInteger('typeOfAccount')->unsigned();
             $table->bigInteger('userId')->unsigned();
             $table->timestamps();
         });
         Schema::table('account',function(Blueprint $table){
 
+            $table->foreign('typeOfAccount')->references('id')->on('types_of_account');
             $table->foreign('userId')->references('id')->on('users');
 
         });
