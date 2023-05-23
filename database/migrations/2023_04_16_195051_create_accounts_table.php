@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->double('balance');
+            $table->double('balance')->nullable(false);
             $table->bigInteger('typeOfAccount')->unsigned();
-            $table->bigInteger('userId')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
-        Schema::table('account',function(Blueprint $table){
+        Schema::table('accounts',function(Blueprint $table){
 
             $table->foreign('typeOfAccount')->references('id')->on('types_of_account');
-            $table->foreign('userId')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
 

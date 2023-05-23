@@ -13,8 +13,21 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('from')->unsigned();
+            $table->bigInteger('to')->unsigned();
+            $table->double('amount')->nullable(false);
+            $table->date('date')->nullable(false);
+            $table->time('time')->nullable(false);
             $table->timestamps();
         });
+
+        Schema::table('transactions', function (Blueprint $table) {
+
+            $table->foreign('from')->references('id')->on('accounts');
+            $table->foreign('to')->references('id')->on('accounts');
+
+        });
+
     }
 
     /**

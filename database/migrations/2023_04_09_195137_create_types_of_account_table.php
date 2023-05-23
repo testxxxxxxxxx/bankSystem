@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('types_of_account', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable(false);
+            $table->bigInteger('intrest_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::table('types_of_account', function (Blueprint $table) {
+
+            $table->foreign('intrest_id')->references('id')->on('intrests');
+
+        });
+
     }
 
     /**
