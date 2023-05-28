@@ -56,5 +56,12 @@ class AccountService
 
         return $account;
     }
+    public function getUserInformation(int $id,string $column): Collection | null 
+    {
+        $account=Account::query()->find($id)->get($column);
+
+        return $account;
+
+    }
 
 }
