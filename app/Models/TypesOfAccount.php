@@ -9,7 +9,7 @@ use App\Models\intrest;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class typesOfAccount extends Model
+class TypesOfAccount extends Model
 {
     use HasFactory;
 
@@ -30,7 +30,7 @@ class typesOfAccount extends Model
     public function interestId(): BelongsTo
     {
 
-        return $this->belongsTo(interest::class);
+        return $this->belongsTo(intrest::class);
     }
 
 }

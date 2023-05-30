@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Services\AccountService;
 use App\Services\TransferService;
 use App\Services\TransactionService;
+use App\Services\TypesOfAccountService;
 use DateTime;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TransactionService::class,function($app){
 
             return new TransactionService(i: 0);
+        });
+        $this->app->bind(TypesOfAccountService::class,function($app){
+
+            return new TypesOfAccountService(i: 0);
         });
 
     }

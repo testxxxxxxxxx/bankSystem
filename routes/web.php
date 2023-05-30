@@ -21,11 +21,11 @@ Route::get('/', function () {
 
 Route::domain('localhost')->group(function(){
 
-    //Route::middleware('auth')->group(function(){
+    Route::middleware('auth')->group(function(){
 
         Route::get('/showAccounts',[AccountController::class,'index'])->name('showAccounts');
 
-    //});
+    });
 
 });
 

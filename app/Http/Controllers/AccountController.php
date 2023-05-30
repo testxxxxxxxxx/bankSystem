@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\AccountService;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -17,16 +18,21 @@ class AccountController extends Controller
 
     public function index()
     {
-        $res=$this->accountService->showAccounts();
+        if(Auth::check())
+        {
+            $res=$this->accountService->showAccounts();
 
-        return $res;
+            return $res;
+
+        }
+        else
+            return redirect()->back();
 
     }
     public function show()
     {
 
     }
-    
     public function create()
     {
 
