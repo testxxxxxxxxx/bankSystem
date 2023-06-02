@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\typesOfAccount;
 
-class intrest extends Model
+class Interest extends Model
 {
     use HasFactory;
 

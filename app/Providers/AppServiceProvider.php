@@ -8,6 +8,7 @@ use App\Services\AccountService;
 use App\Services\TransferService;
 use App\Services\TransactionService;
 use App\Services\TypesOfAccountService;
+use App\Services\InterestService;
 use DateTime;
 
 class AppServiceProvider extends ServiceProvider
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TypesOfAccountService::class,function($app){
 
             return new TypesOfAccountService(i: 0);
+        });
+        $this->app->bind(InterestService::class,function($app){
+
+            return new InterestService(i: 0);
         });
 
     }

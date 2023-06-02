@@ -18,19 +18,39 @@ class AccountService
 
     }
 
-    public function showAccounts(): Collection | null
+    /*
+
+        gets all informaction about user accounts
+
+    */
+
+    public function getAccounts(int $userId): Collection | null
     {
-        $accounts=Account::query()->get();
+        $accounts=Account::query()->where('user_id',$userId)->get();
 
         return $accounts;
     }
-    public function showUserAccount(int $id): Collection | null 
+
+    /*
+
+        gets all information about account
+
+    */
+
+    public function getUserAccount(int $id): Collection | null 
     {
         $account=Account::query()->findOrFail($id)->get();
 
         return $account;
 
     }
+
+    /*
+
+        creates a new account
+
+    */
+
     public function createAccount(float $balance,int $typeOfAccount,int $userId): Model | null 
     {
         $account=Account::query()->create([
@@ -44,24 +64,44 @@ class AccountService
         return $account;
 
     }
+
+    /*
+
+        updates informations in account
+
+    */
+
     public function updateAccount(int $id,float $balance,int $typeOfAccount,int $userId): int
     {
         $account=Account::query()->where('id',$id)->update(['balance'=>$balance,'typeOfAccount'=>$typeOfAccount,'user_id'=>$userId]);
 
         return $account;
     }
+
+    /*
+
+        deletes account
+
+    */
+
     public function deleteAccount(int $id): int 
     {
         $account=Account::query()->where('id',$id)->delete();
 
         return $account;
     }
+
+    /*
+
+        gets one information abount account
+
+    */
+
     public function getUserInformation(int $id,string $column): Collection | null 
     {
         $account=Account::query()->find($id)->get($column);
 
         return $account;
-
     }
 
 }

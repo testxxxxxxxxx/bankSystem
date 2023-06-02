@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Account;
-use App\Models\intrest;
+use App\Models\Interest;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -30,7 +30,7 @@ class TypesOfAccount extends Model
     public function interestId(): BelongsTo
     {
 
-        return $this->belongsTo(intrest::class);
+        return $this->belongsTo(Interest::class);
     }
 
 }
