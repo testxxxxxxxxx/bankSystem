@@ -39,7 +39,7 @@ class AccountController extends Controller
         {
             $id=$idRequest['id'];
 
-            $res=$this->accountService->getUserAccount($id);
+            $res=$this->accountService->getUserAccount((int)$id);
 
             return view('accounts',['res'=>$res]);
 
