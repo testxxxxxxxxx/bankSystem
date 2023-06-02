@@ -24,7 +24,7 @@ Route::domain('localhost')->group(function(){
     Route::middleware('auth')->group(function(){
 
         Route::get('/showAccounts',[AccountController::class,'index'])->name('showAccounts');
-        Route::get('/showUserAccount/{id}',[AccountController::class,'show'])->where('id','^[0-9]*$')->name('showUserAccount');
+        Route::get('/showUserAccount/{id}',[AccountController::class,'show'])->where('id','[0-9]*')->name('showUserAccount');
         Route::post('/createAccount',[AccountController::class,'create'])->name('createAccount');
         Route::post('/updateAccount',[AccountController::class,'update'])->name('updateAccount');
         Route::post('/deleteAccount',[AccountController::class,'delete'])->name('deleteAccount');
