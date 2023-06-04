@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(TransferService::class,function($app){
 
-            return new TransferService($app->make(DateTime::class),$app->make(AccountService::class),$this->app->make(TransactionService::class));
+            return new TransferService($app->make(DateTime::class),$app->make(AccountService::class),$app->make(TransactionService::class));
         });
         $this->app->bind(TransactionService::class,function($app){
 
