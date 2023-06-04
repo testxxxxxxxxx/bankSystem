@@ -18,7 +18,7 @@ class TypesOfAccount extends Model
     protected $fillable=[
 
         'name',
-        'intrest_id',
+        'interest_id',
 
     ];
 
