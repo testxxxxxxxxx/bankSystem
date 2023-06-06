@@ -14,9 +14,6 @@ class AccountSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for($i=0;$i<10;$i++)
-        {
-
             Account::query()->create([
 
                 'balance'=>$faker->randomFloat(),
@@ -24,8 +21,6 @@ class AccountSeeder extends Seeder
                 'user_id'=>$faker->randomDigit()
 
             ]);
-
-        }
 
     }
 }

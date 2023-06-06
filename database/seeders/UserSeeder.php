@@ -15,9 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for($i=0;$i<10;$i++)
-        {
-
             User::query()->create([
 
                 'name'=>$faker->name,
@@ -27,8 +24,6 @@ class UserSeeder extends Seeder
                 'password'=>$faker->password()
 
             ]);
-
-        }
  
     }
 }

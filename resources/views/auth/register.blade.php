@@ -37,6 +37,19 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-6">
+
+                                <label for="lastname">Lastname: </label>
+                                <input type="text" name="lastname" class="form-control" id="lastname">
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <label for="personalNumber">PESEL: </label>
+                                <input type="number" name="personalNumber" class="form-control" id="personalNumber">
+
+                            </div>
+
                         </div>
 
                         <div class="row mb-3">

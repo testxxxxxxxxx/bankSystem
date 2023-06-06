@@ -15,17 +15,12 @@ class TypeOfAccountSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for($i=0;$i<10;$i++)
-        {
-
             TypesOfAccount::query()->create([
 
                 'name'=>Str::random(10),
                 'interest_id'=>$faker->randomDigit()
 
             ]);
-
-        }
 
     }
 }

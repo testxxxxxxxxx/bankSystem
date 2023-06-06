@@ -14,14 +14,11 @@ class InterestSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for($i=0;$i<10;$i++)
-        {
             Interest::query()->create([
 
                 'value'=>$faker->randomDigit()
     
             ]);
-        }
 
     }
 }
