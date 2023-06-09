@@ -50,7 +50,7 @@ class InterestService
 
     */
 
-    public function createInterest(int $id,float $value): Model | null 
+    public function createInterest(float $value): Model | null 
     {
         $interest=Interest::query()->create([
 

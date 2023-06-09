@@ -24,7 +24,7 @@ class TypesOfAccountService
 
     */
 
-    public function showTypesOfAccount(): Collection | null 
+    public function getTypesOfAccount(): Collection | null 
     {
         $typesOfAccount=TypesOfAccount::query()->get();
 
