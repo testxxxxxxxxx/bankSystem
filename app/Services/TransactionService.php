@@ -18,7 +18,7 @@ class TransactionService
 
     }
 
-    public function showTransfers(): Collection | null
+    public function getTransfers(): Collection | null
     {
         $transactions=Transaction::query()->get();
 

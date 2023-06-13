@@ -78,7 +78,7 @@ class TransferService
     private function getBalance(int $id): float
     {
 
-        return (float)$this->accountService->getUserInformation($id,'balance')->balance;
+        return (float)$this->accountService->getUserInformation($id,'balance')[0]['balance'];
     }
 
     /*
@@ -89,8 +89,8 @@ class TransferService
 
     private function saveCurrentBalance(int $id,float $balance): int 
     {
-        $typeOfAccount=(int)$this->accountService->getUserBalance($id,'typeOfAccount')->typeOfAccount;
-        $userId=(int)$this->accountService->getUserInformation($id,'userId')->userId;
+        $typeOfAccount=(int)$this->accountService->getUserBalance($id,'typeOfAccount')[0]['typeOfAccount'];
+        $userId=(int)$this->accountService->getUserInformation($id,'user_id')[0]['user_id'];
 
         return $this->accountService->updateAccount($id,$balance,$typeOfAccount,$userId);
     }

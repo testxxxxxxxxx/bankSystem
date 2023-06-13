@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Services\TransferService;
+use App\Services\TransactionService;
+use App\Http\Requests\TranasctionRequest;
 
 class TransactionController extends Controller
 {
 
-    public function __construct(protected TransferService $transferService)
+    public function __construct(protected TransactionService $transactionService)
     {
-        $this->transferService=$transferService;
+        $this->transactionService=$transactionService;
 
     }
 
     public function index()
     {
+        if(Auth::check())
+        {
+
+        }
+        else
+            return redirect()->back();
 
     }
     public function show()

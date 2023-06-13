@@ -97,9 +97,9 @@ class AccountService
 
     */
 
-    public function getUserInformation(int $id,string $column): Collection | null 
+    public function getUserInformation(int $id,string $column): array | null 
     {
-        $account=Account::query()->find($id)->get($column);
+        $account=Account::query()->where('id',$id)->get($column)->toArray();
 
         return $account;
     }

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Account;
+use App\Models\Group;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
@@ -25,6 +27,8 @@ class User extends Authenticatable
         'personalNumber',
         'email',
         'password',
+        'group_id',
+
     ];
 
     /**
@@ -50,6 +54,11 @@ class User extends Authenticatable
     {
 
         return $this->hasMany(Account::class);
+    }
+    public function groupId(): BelongsTo
+    {
+
+        return $this->belongsTo(Group::class);
     }
 
 }
