@@ -51,12 +51,12 @@ class interestController extends Controller
 
             $createdInterest=$this->interestService->createInterest((float)$value);
 
-            if(!$createdInterest)
+            if($createdInterest<0)
                 $message="Interest has not been created!";
             else
                 $message="Interest has been created!";
 
-            return redirect()->route('showInterests',['message'=>$message]);
+            return redirect()->route('showInterest',['id'=>$createdInterest,'message'=>$message]);
         }
         else
             return redirect()->back();

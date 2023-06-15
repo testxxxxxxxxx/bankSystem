@@ -54,12 +54,12 @@ class typesOfAccountController extends Controller
 
             $createdTypesOfAccount=$this->typesOfAccountService->createTypesOfAccount($name,(int)$interestId);
 
-            if(!$createdTypesOfAccount)
+            if($createdTypesOfAccount<0)
                 $message="Type of account has not been created!";
             else
                 $message="Type of account has been created!";
 
-            return redirect()->route('showTypesOfAccount',['message'=>$message]);
+            return redirect()->route('showTypesOfAccount',['id'=>$createdTypesOfAccount,'message'=>$message]);
 
         }
         else

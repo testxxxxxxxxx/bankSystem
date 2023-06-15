@@ -50,9 +50,9 @@ class InterestService
 
     */
 
-    public function createInterest(float $value): Model | null 
+    public function createInterest(float $value): int | null 
     {
-        $interest=Interest::query()->create([
+        $interest=Interest::query()->insertGetId([
 
             'value'=>$value,
 

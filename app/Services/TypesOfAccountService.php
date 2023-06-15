@@ -66,7 +66,7 @@ class TypesOfAccountService
 
     public function createTypesOfAccount(string $name,int $intrestId): Model | null 
     {
-        $typeOfAccount=TypesOfAccount::query()->create([
+        $typeOfAccount=TypesOfAccount::query()->insertGetId([
 
             'name'=>$name,
             'intrest_id'=>$intrestId,

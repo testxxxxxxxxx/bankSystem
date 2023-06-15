@@ -18,15 +18,21 @@ class TransactionService
 
     }
 
-    public function getTransfers(): Collection | null
+    public function getTransactions(): Collection | null
     {
         $transactions=Transaction::query()->get();
 
         return $transactions;
     }
-    public function createTransfer(int $from,int $to,float $amount,string $date,string $time): Model | null 
+    public function getTransaction(int $id): Collection | null 
     {
-        $transaction=Transaction::query()->create([
+        $transaction=Transaction::query()->where('id',$id)->get();
+
+        return $transaction;
+    }
+    public function createTransaction(int $from,int $to,float $amount,string $date,string $time): int | null 
+    {
+        $transaction=Transaction::query()->insertGetId([
 
             'from'=>$from,
             'to'=>$to,

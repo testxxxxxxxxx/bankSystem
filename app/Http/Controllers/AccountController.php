@@ -58,12 +58,12 @@ class AccountController extends Controller
 
             $accountIsCreated=$this->accountService->createAccount($balance,$typeOfAccount,$userId);
 
-            if(!$accountIsCreated)
+            if($accountIsCreated<0)
                 $res="Your account has not been created!";
             else
                 $res="Your account has been created!"; 
 
-            return redirect()->route('showUserAccount',['res'=>$res]);
+            return redirect()->route('showUserAccount',['id'=>$accountIsCreated,'res'=>$res]);
 
         }
         else
