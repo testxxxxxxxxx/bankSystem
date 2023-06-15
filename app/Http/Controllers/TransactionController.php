@@ -70,7 +70,7 @@ class TransactionController extends Controller
     }
     public function update()
     {
-
+        
     }
     public function delete()
     {
