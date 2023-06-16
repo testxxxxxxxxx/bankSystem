@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
-    protected object $accountService;
+    protected CONST ID=1;
 
-    public function __construct(AccountService $accountService)
+    public function __construct(protected AccountService $accountService)
     {
         $this->accountService=$accountService;
 

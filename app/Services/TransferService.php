@@ -51,7 +51,7 @@ class TransferService
 
     */
 
-    private function getCurrentDate(): string
+    public function getCurrentDate(): string
     {
 
         return $this->dateTime->format("d");
@@ -63,7 +63,7 @@ class TransferService
 
     */
 
-    private function getCurrentTime(): string 
+    public function getCurrentTime(): string 
     {
 
         return $this->dateTime->format("H:i:S");

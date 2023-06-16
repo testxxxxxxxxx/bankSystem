@@ -10,6 +10,7 @@ use App\Http\Requests\TypesOfAccountRequest;
 
 class typesOfAccountController extends Controller
 {
+    protected CONST ID=2;
     
     public function __construct(protected TypesOfAccountService $typesOfAccountService)
     {
@@ -59,7 +60,7 @@ class typesOfAccountController extends Controller
             else
                 $message="Type of account has been created!";
 
-            return redirect()->route('showTypesOfAccount',['id'=>$createdTypesOfAccount,'message'=>$message]);
+            return redirect()->route('showTypesOfAccount',[$createdTypesOfAccount])->with('message',$message);
 
         }
         else
@@ -81,7 +82,7 @@ class typesOfAccountController extends Controller
             else
                 $message="Type of account has been updated!";
 
-            return redirect()->route('showTypesOfAccount',['message'=>$message]);
+            return redirect()->route('showTypesOfAccount',[$id])->with('message',$message);
 
         }
         else

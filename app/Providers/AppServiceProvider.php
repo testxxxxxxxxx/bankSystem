@@ -9,6 +9,9 @@ use App\Services\TransferService;
 use App\Services\TransactionService;
 use App\Services\TypesOfAccountService;
 use App\Services\InterestService;
+use App\Services\GroupService;
+use App\Services\PrivilegesService;
+use App\Services\UserService;
 use DateTime;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,6 +40,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(InterestService::class,function($app){
 
             return new InterestService(i: 0);
+        });
+        $this->app->bind(GroupService::class,function($app){
+
+            return new GroupService(i: 0);
+        });
+        $this->app->bind(PrivilegesService::class,function($app){
+
+            return new PrivilegesService($app->make(GroupService::class),$app->make(UserService::class));
+        });
+        $this->app->bind(UserService::class,function($app){
+
+            return new UserService(i: 0);
         });
 
     }

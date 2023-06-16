@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class PrivilegesController extends Controller
 {
-    protected CONST ID=5;
+    protected CONST ID=6;
 
 }

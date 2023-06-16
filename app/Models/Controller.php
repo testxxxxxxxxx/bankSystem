@@ -5,27 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\User;
 use App\Models\Privileges;
 
-class Group extends Model
+class Controller extends Model
 {
     use HasFactory;
 
-    protected $table="groups";
+    protected $table="controllers";
 
     protected $fillable=[
 
-        'name',
-        'privileges',
+        "name",
 
     ];
 
-    public function user(): HasMany
-    {
-
-        return $this->hasMany(User::class);
-    }
     public function privileges(): HasMany
     {
 

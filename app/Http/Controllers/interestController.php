@@ -10,6 +10,7 @@ use App\Services\InterestService;
 
 class interestController extends Controller
 {
+    protected CONST ID=3;
 
     public function __construct(protected InterestService $interestService)
     {
@@ -56,7 +57,7 @@ class interestController extends Controller
             else
                 $message="Interest has been created!";
 
-            return redirect()->route('showInterest',['id'=>$createdInterest,'message'=>$message]);
+            return redirect()->route('showInterest',[$createdInterest])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -76,7 +77,7 @@ class interestController extends Controller
             else
                 $message="Interest has been updated!";
 
-            return redirect()->route('showInterest',['message'=>$message]);
+            return redirect()->route('showInterest',[$id])->with('message',$message);
         }
         else
             return redirect()->back();
