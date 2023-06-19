@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\TransactionService;
 use App\Services\TransferService;
+use App\Services\PrivilegesService;
 use App\Http\Requests\IdRequest;
 use App\Http\Requests\TransactionRequest;
 
@@ -13,16 +14,17 @@ class TransactionController extends Controller
 {
     protected CONST ID=4;
 
-    public function __construct(protected TransactionService $transactionService,protected TransferService $transferService)
+    public function __construct(protected TransactionService $transactionService,protected TransferService $transferService,protected PrivilegesService $privilegesService)
     {
         $this->transactionService=$transactionService;
         $this->transferService=$transferService;
+        $this->privilegesService=$privilegesService;
 
     }
 
     public function index()
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $transactions=$this->transactionService->getTransactions();
 
@@ -34,7 +36,7 @@ class TransactionController extends Controller
     }
     public function show(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
 
@@ -48,7 +50,7 @@ class TransactionController extends Controller
     }
     public function create(TransactionRequest $transactionRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $from=$transactionRequest->input('from');
             $to=$transactionRequest['to'];
@@ -72,7 +74,7 @@ class TransactionController extends Controller
     }
     public function update(IdRequest $idRequest,TransactionRequest $transactionRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
             $from=$transactionRequest['from'];
@@ -97,7 +99,7 @@ class TransactionController extends Controller
     }
     public function delete(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest['id'];
 

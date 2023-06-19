@@ -7,20 +7,22 @@ use App\Http\Requests\InterestRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\InterestService;
+use App\Services\PrivilegesService;
 
 class interestController extends Controller
 {
     protected CONST ID=3;
 
-    public function __construct(protected InterestService $interestService)
+    public function __construct(protected InterestService $interestService,protected PrivilegesService $privilegesService)
     {
         $this->interestService=$interestService;
+        $this->privilegesService=$privilegesService;
 
     }
 
     public function index()
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $intrests=$this->interestService->getAllInterests();
 
@@ -32,7 +34,7 @@ class interestController extends Controller
     }
     public function show(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
 
@@ -46,7 +48,7 @@ class interestController extends Controller
     }
     public function create(InterestRequest $interestRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $value=$interestRequest['value'];
 
@@ -65,7 +67,7 @@ class interestController extends Controller
     }
     public function update(IdRequest $idRequest,InterestRequest $interestRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
             $value=$interestRequest['value'];
@@ -85,7 +87,7 @@ class interestController extends Controller
     }
     public function delete(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest['id'];
 

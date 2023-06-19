@@ -6,21 +6,23 @@ use App\Http\Requests\AccountRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Services\AccountService;
+use App\Services\PrivilegesService;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
-    protected CONST ID=1;
+    public CONST ID=1;
 
-    public function __construct(protected AccountService $accountService)
+    public function __construct(protected AccountService $accountService,protected PrivilegesService $privilegesService)
     {
         $this->accountService=$accountService;
+        $this->privilegesService=$privilegesService;
 
     }
 
     public function index()
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $userId=Auth::id();
 
@@ -35,7 +37,7 @@ class AccountController extends Controller
     }
     public function show(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest['id'];
 
@@ -50,7 +52,7 @@ class AccountController extends Controller
     }
     public function create(AccountRequest $accountRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $balance=$accountRequest['balance'];
             $typeOfAccount=$accountRequest['typeOfAccount'];
@@ -72,7 +74,7 @@ class AccountController extends Controller
     }
     public function update(IdRequest $idRequest,AccountRequest $accountRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
             $balance=$accountRequest['balance'];
@@ -95,7 +97,7 @@ class AccountController extends Controller
     }
     public function delete(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
 

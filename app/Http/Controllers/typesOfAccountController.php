@@ -6,21 +6,23 @@ use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\TypesOfAccountService;
+use App\Services\PrivilegesService;
 use App\Http\Requests\TypesOfAccountRequest;
 
 class typesOfAccountController extends Controller
 {
     protected CONST ID=2;
     
-    public function __construct(protected TypesOfAccountService $typesOfAccountService)
+    public function __construct(protected TypesOfAccountService $typesOfAccountService,protected PrivilegesService $privilegesService)
     {
         $this->typesOfAccountService=$typesOfAccountService;
+        $this->privilegesService=$privilegesService;
 
     }
 
     public function index()
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $typesOfAccount=$this->typesOfAccountService->getTypesOfAccount();
 
@@ -32,7 +34,7 @@ class typesOfAccountController extends Controller
     }
     public function show(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
 
@@ -48,7 +50,7 @@ class typesOfAccountController extends Controller
     }
     public function create(TypesOfAccountRequest $typesOfAccountRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $name=$typesOfAccountRequest->input('name');
             $interestId=$typesOfAccountRequest['interestId'];
@@ -69,7 +71,7 @@ class typesOfAccountController extends Controller
     }
     public function update(IdRequest $idRequest,TypesOfAccountRequest $typesOfAccountRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest->input('id');
             $name=$typesOfAccountRequest['name'];
@@ -91,7 +93,7 @@ class typesOfAccountController extends Controller
     }
     public function delete(IdRequest $idRequest)
     {
-        if(Auth::check())
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
             $id=$idRequest['id'];
 
