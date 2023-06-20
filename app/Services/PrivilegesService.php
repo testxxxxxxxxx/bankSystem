@@ -11,13 +11,10 @@ use App\Models\Privileges;
 
 class PrivilegesService
 {
-    private GroupService $groupService;
-    private UserService $userService;
-
-    public function __construct(protected GroupService $groupServices,protected UserService $userServices)
+    public function __construct(protected GroupService $groupService,protected UserService $userService)
     {
-        $this->groupService=$groupServices;
-        $this->userService=$userServices;
+        $this->groupService=$groupService;
+        $this->userService=$userService;
 
     }
 
