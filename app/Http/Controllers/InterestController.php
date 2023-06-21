@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\InterestService;
 use App\Services\PrivilegesService;
 
-class interestController extends Controller
+class InterestController extends Controller
 {
     protected CONST ID=3;
 
@@ -99,7 +99,6 @@ class interestController extends Controller
                 $message="Interest has been deleted!";
 
             return redirect()->route('showInterests',['message'=>$message]);
-
         }
         else
             return redirect()->back();

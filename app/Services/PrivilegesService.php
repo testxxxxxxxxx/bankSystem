@@ -6,7 +6,6 @@ namespace App\Services;
 
 use App\Services\GroupService;
 use App\Services\UserService;
-use App\Models\Controller;
 use App\Models\Privileges;
 
 class PrivilegesService
@@ -18,7 +17,7 @@ class PrivilegesService
 
     }
 
-    private function getPrivileges(int $controllerId): array | null 
+    public function getPrivileges(int $controllerId): array | null 
     {
         $privileges=Privileges::query()->where('controller_id',$controllerId)->get('group_id')->toArray();
 

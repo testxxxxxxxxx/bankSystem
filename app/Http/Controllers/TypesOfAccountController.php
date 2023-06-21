@@ -9,7 +9,7 @@ use App\Services\TypesOfAccountService;
 use App\Services\PrivilegesService;
 use App\Http\Requests\TypesOfAccountRequest;
 
-class typesOfAccountController extends Controller
+class TypesOfAccountController extends Controller
 {
     protected CONST ID=2;
     
@@ -42,7 +42,6 @@ class typesOfAccountController extends Controller
             $interestId=$this->typesOfAccountService->getIntrestId($id);
 
             return view('typesOfAccount',['name'=>$name,'interestId'=>$interestId]);
-
         }
         else
             return redirect()->back();

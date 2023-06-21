@@ -26,10 +26,9 @@ class AccountController extends Controller
         {
             $userId=Auth::id();
 
-            $res=$this->accountService->getAccounts($userId);
+            $accounts=$this->accountService->getAccounts($userId);
 
-            return view('accounts',['res'=>$res]);
-
+            return view('accounts',['accounts'=>$accounts]);
         }
         else
             return redirect()->back();
@@ -41,10 +40,9 @@ class AccountController extends Controller
         {
             $id=$idRequest['id'];
 
-            $res=$this->accountService->getUserAccount((int)$id);
+            $account=$this->accountService->getUserAccount((int)$id);
 
-            return view('accounts',['res'=>$res]);
-
+            return view('accounts',['account'=>$account]);
         }
         else
             return redirect()->back();
@@ -58,15 +56,14 @@ class AccountController extends Controller
             $typeOfAccount=$accountRequest['typeOfAccount'];
             $userId=Auth::id();
 
-            $accountIsCreated=$this->accountService->createAccount($balance,$typeOfAccount,$userId);
+            $accountIsCreated=$this->accountService->createAccount((float)$balance,(int)$typeOfAccount,(int)$userId);
 
             if($accountIsCreated<0)
-                $res="Your account has not been created!";
+                $message="Your account has not been created!";
             else
-                $res="Your account has been created!"; 
+                $message="Your account has been created!"; 
 
-            return redirect()->route('showUserAccount',['id'=>$accountIsCreated,'res'=>$res]);
-
+            return redirect()->route('showUserAccount',[$accountIsCreated])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -84,12 +81,11 @@ class AccountController extends Controller
             $accountIsUpdated=$this->accountService->updateAccount($id,$balance,$typeOfAccount,$userId);
 
             if(!$accountIsUpdated)
-                $res="Your account has not been updated!";
+                $message="Your account has not been updated!";
             else
-                $res="Your account has not been updated!";
+                $message="Your account has not been updated!";
 
-            return redirect()->route('showUserAccount',['res'=>$res]);
-
+            return redirect()->route('showUserAccount',[$accountIsUpdated])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -104,12 +100,11 @@ class AccountController extends Controller
             $accountIsDeleted=$this->accountService->deleteAccount($id);
 
             if(!$accountIsDeleted)
-                $res="Your account has not been deleted!";
+                $message="Your account has not been deleted!";
             else
-                $res="Your account has been deleted!";
+                $message="Your account has been deleted!";
 
-            return redirect()->route('showUserAccount',['res'=>$res]);
-
+            return redirect()->route('showUserAccount',[$accountIsDeleted])->with('message',$message);
         }
         else
             return redirect()->back();
