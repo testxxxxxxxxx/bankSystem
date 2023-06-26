@@ -8,6 +8,7 @@ use Database\Seeders\UserSeeder;
 use Database\Seeders\AccountSeeder;
 use Database\Seeders\TypeOfAccountSeeder;
 use Database\Seeders\InterestSeeder;
+use Database\Seeders\ControllerSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             InterestSeeder::class,
             TypeOfAccountSeeder::class,
             AccountSeeder::class,
+            ControllerSeeder::class,
 
         ]);
 

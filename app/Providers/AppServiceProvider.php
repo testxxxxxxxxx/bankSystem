@@ -12,6 +12,14 @@ use App\Services\InterestService;
 use App\Services\GroupService;
 use App\Services\PrivilegesService;
 use App\Services\UserService;
+use App\Services\ControllerService;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TypesOfAccountController;
+use App\Http\Controllers\InterestController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PrivilegesController;
+use App\Http\Controllers\TransferController;
 use DateTime;
 
 class AppServiceProvider extends ServiceProvider
@@ -52,6 +60,20 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserService::class,function($app){
 
             return new UserService(i: 0);
+        });
+        $this->app->bind(ControllerService::class,function($app){
+
+            return new ControllerService(controllers: [
+
+                    AccountController::class,
+                    TypesOfAccountController::class,
+                    InterestController::class,
+                    TransactionController::class,
+                    GroupController::class,
+                    PrivilegesController::class,
+                    TransferController::class,
+
+            ]);
         });
 
     }

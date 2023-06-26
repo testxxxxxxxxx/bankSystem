@@ -7,6 +7,7 @@ use App\Http\Controllers\TypesOfAccountController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\TransferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::domain('localhost')->group(function(){
         Route::post('/createGroup',[GroupController::class,'create'])->name('createGroup');
         Route::post('/updateGroup',[GroupController::class,'update'])->name('updateGroup');
         Route::post('/deleteGroup',[GroupController::class,'delete'])->name('deleteGroup');
+        Route::get('/moveAmount',TransferController::class)->name('moveAmount');
 
     });
 
