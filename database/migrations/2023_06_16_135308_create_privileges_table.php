@@ -20,7 +20,7 @@ return new class extends Migration
 
         Schema::table('privileges', function (Blueprint $table) {
 
-            $table->foreing('controller_id')->references('id')->on('controllers');
+            $table->foreign('controller_id')->references('id')->on('controllers');
             $table->foreign('group_id')->references('id')->on('groups');
 
         });
