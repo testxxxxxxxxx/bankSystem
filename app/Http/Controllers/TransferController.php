@@ -35,6 +35,7 @@ class TransferController extends Controller
             else
                 $message="Amount has been moved!";
 
+            return redirect()->route('moveAmount',['message'=>$message]);
         }
         else
             return redirect()->back();

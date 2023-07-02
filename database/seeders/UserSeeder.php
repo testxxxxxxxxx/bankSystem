@@ -5,25 +5,24 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Faker\Generator as Faker;
-use Faker\Provider\pl_PL\Person;
 
 class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker): void
+    public function run(): void
     {
-            User::query()->create([
+        User::query()->create([
 
-                'name'=>$faker->name,
-                'lastname'=>$faker->lastName(),
-                'personalNumber'=>Person::pesel(),
-                'email'=>$faker->unique()->email,
-                'password'=>$faker->password()
+            'name'=>'root',
+            'lastname'=>'',
+            'personalNumber'=>00000000000,
+            'email'=>'root@root.com',
+            'password'=>'12345678',
+            'group_id'=>1,
 
-            ]);
- 
+        ]);
+
     }
 }
