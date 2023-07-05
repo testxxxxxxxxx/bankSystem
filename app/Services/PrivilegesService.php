@@ -17,11 +17,11 @@ class PrivilegesService
 
     }
 
-    public function getPrivileges(int $controllerId): array | null 
+    public function getPrivileges(int $controllerId): int
     {
         $privileges=Privileges::query()->where('controller_id',$controllerId)->get('group_id')->toArray();
 
-        return $privileges[0]['group_id'];
+        return (int)$privileges[0]['group_id'];
     }
     public function updatePrivileges(int $id,int $contorllerId,int $groupId): int | null 
     {

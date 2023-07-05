@@ -2,17 +2,39 @@
 
 <div class="container">
 
-    @isset($res)
+    @isset($accounts)
 
-        @foreach($res as $r)
-            {{$r->id}} <br>
-            {{$r->balance}} <br>
-            {{$r->user_id}} <br>
+        @foreach($accounts as $account)
+            {{$account->id}} <br>
+            {{$account->balance}} <br>
+            {{$account->user_id}} <br>
         
         @endforeach
 
     @endisset
 
+    @isset($typesOfAccounts)
+
+        <div class="row form-group">
+
+                <select id="typeOfAccount" class="form-control">
+
+                    @foreach($typesOfAccounts as $type)
+
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+
+                    @endforeach
+
+                </select>
+
+                <button id="sendButton">create</button>
+
+        </div>
+
+    @endisset
+
 </div>
+
+    @vite(['resources/js/app.js'])
 
 @include('partials/_footer')

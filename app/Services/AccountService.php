@@ -51,7 +51,7 @@ class AccountService
 
     */
 
-    public function createAccount(float $balance,int $typeOfAccount,int $userId): Model | null 
+    public function createAccount(float $balance=0,int $typeOfAccount,int $userId): int
     {
         $account=Account::query()->insertGetId([
 

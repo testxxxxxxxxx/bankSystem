@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::domain('localhost')->group(function(){
 
-    Route::middleware('auth')->group(function(){
+     Route::middleware('auth')->group(function(){
 
         Route::get('/showAccounts',[AccountController::class,'index'])->name('showAccounts');
         Route::get('/showUserAccount/{id}',[AccountController::class,'show'])->where('id','[0-9]*')->name('showUserAccount');

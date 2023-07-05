@@ -7,16 +7,18 @@ use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Services\AccountService;
 use App\Services\PrivilegesService;
+use App\Services\TypesOfAccountService;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
     public CONST ID=1;
 
-    public function __construct(protected AccountService $accountService,protected PrivilegesService $privilegesService)
+    public function __construct(protected AccountService $accountService,protected PrivilegesService $privilegesService,protected TypesOfAccountService $typesOfAccountService)
     {
         $this->accountService=$accountService;
         $this->privilegesService=$privilegesService;
+        $this->typesOfAccountService=$typesOfAccountService;
 
     }
 
@@ -27,8 +29,9 @@ class AccountController extends Controller
             $userId=Auth::id();
 
             $accounts=$this->accountService->getAccounts($userId);
+            $typesOfAccounts=$this->typesOfAccountService->getTypesOfAccount();
 
-            return view('accounts',['accounts'=>$accounts]);
+            return view('accounts',['accounts'=>$accounts,'typesOfAccounts'=>$typesOfAccounts]);
         }
         else
             return redirect()->back();
@@ -52,11 +55,10 @@ class AccountController extends Controller
     {
         if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
-            $balance=$accountRequest['balance'];
             $typeOfAccount=$accountRequest['typeOfAccount'];
             $userId=Auth::id();
 
-            $accountIsCreated=$this->accountService->createAccount((float)$balance,(int)$typeOfAccount,(int)$userId);
+            $accountIsCreated=$this->accountService->createAccount(0,(int)$typeOfAccount,(int)$userId);
 
             if($accountIsCreated<0)
                 $message="Your account has not been created!";

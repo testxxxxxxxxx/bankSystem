@@ -22,7 +22,6 @@ class AccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'balance'=>'required',
             'typeOfAccount'=>'required',
 
         ];

@@ -16,11 +16,11 @@ class UserService
         
     }
 
-    public function getGroupId(int $id): array | null 
+    public function getGroupId(int $id): int
     {
         $groupId=User::query()->where('id',$id)->get('group_id')->toArray();
 
-        return $groupId[0]['group_id'];
+        return (int)$groupId[0]['group_id'];
     }
 
 }
