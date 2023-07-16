@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Account;
 use App\Models\Interest;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Database\Factories\TypesOfAccountFactory;
 
 class TypesOfAccount extends Model
 {
@@ -31,6 +33,11 @@ class TypesOfAccount extends Model
     {
 
         return $this->belongsTo(Interest::class);
+    }
+    protected static function newFactory(): Factory
+    {
+        
+        return TypesOfAccountFactory::new();
     }
 
 }

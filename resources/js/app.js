@@ -3,7 +3,9 @@ import $ from 'jquery';
 
 $(()=>{
 
-    $("#sendButton").on('click',()=>{
+    $("#sendButton").on('click',(e)=>{
+
+        e.preventDefault();
 
         const url="/createAccount";
         const typeOfAccountValue=parseInt(document.querySelector("#typeOfAccount").value);
@@ -22,7 +24,19 @@ $(()=>{
             method: "POST",
             url: url,
             data: {typeOfAccount: typeOfAccountValue},
+            success: (store)=>{
 
+                location.href=store;
+
+                console.log("true");
+
+            },
+            error: ()=>{
+
+                console.log("error");
+
+            }
+        
         }).done(()=>{
 
             alert("true");
