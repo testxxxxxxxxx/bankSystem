@@ -65,7 +65,7 @@ class TransactionController extends Controller
             else
                 $message="Transaction has been created!";
 
-            return redirect()->route('showTransaction',[$createdTransaction])->with('message',$message);
+            return redirect()->route('showTransaction',[$createdTransaction,"id=$createdTransaction"])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -89,7 +89,7 @@ class TransactionController extends Controller
             else
                 $message="Transaction has been updated!";
 
-            return redirect()->route('showTransaction',[$id])->with('message',$message);;
+            return redirect()->route('showTransaction',[$updatedTransaction,"id={$updatedTransaction}"])->with('message',$message);
         }
         else
             return redirect()->back();

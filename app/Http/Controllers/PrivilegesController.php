@@ -45,7 +45,7 @@ class PrivilegesController extends Controller
             else
                 $message="Privileges has been updated!";
 
-            return redirect()->route('showPrivilege',[$id])->with('message',$message);
+            return redirect()->route('showPrivilege',[$privilegesIsUpdated,"id={$privilegesIsUpdated}"])->with('message',$message);
 
         }
         else

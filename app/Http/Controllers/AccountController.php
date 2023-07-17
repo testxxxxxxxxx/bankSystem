@@ -55,7 +55,7 @@ class AccountController extends Controller
     {
         if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
         {
-            $typeOfAccount=$accountRequest['typeOfAccount'];
+            $typeOfAccount=(int)$accountRequest['typeOfAccount'];
             $userId=Auth::id();
 
             $accountIsCreated=$this->accountService->createAccount(0,(int)$typeOfAccount,(int)$userId);
@@ -65,7 +65,7 @@ class AccountController extends Controller
             else
                 $message="Your account has been created!"; 
 
-            return redirect()->route('showUserAccount',[$accountIsCreated])->with('message',$message);
+            return redirect()->route('showUserAccount',[$accountIsCreated,"id={$accountIsCreated}"])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -87,7 +87,7 @@ class AccountController extends Controller
             else
                 $message="Your account has not been updated!";
 
-            return redirect()->route('showUserAccount',[$accountIsUpdated])->with('message',$message);
+            return redirect()->route('showUserAccount',[$accountIsUpdated,"id={$accountIsUpdated}"])->with('message',$message);
         }
         else
             return redirect()->back();

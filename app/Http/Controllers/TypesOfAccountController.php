@@ -61,7 +61,7 @@ class TypesOfAccountController extends Controller
             else
                 $message="Type of account has been created!";
 
-            return redirect()->route('showTypesOfAccount',[$createdTypesOfAccount])->with('message',$message);
+            return redirect()->route('showTypesOfAccount',[$createdTypesOfAccount,"id={$createdTypesOfAccount}"])->with('message',$message);
 
         }
         else
@@ -83,7 +83,7 @@ class TypesOfAccountController extends Controller
             else
                 $message="Type of account has been updated!";
 
-            return redirect()->route('showTypesOfAccount',[$id])->with('message',$message);
+            return redirect()->route('showTypesOfAccount',[$updatedTypeOfAccount,"id={$updatedTypeOfAccount}"])->with('message',$message);
 
         }
         else

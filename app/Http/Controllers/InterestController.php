@@ -38,9 +38,9 @@ class InterestController extends Controller
         {
             $id=$idRequest->input('id');
 
-            $intrest=$this->interestService->getInterest((int)$id);
+            $interest=$this->interestService->getInterest((int)$id);
 
-            return view('interests',['interest'=>$intrest]);
+            return view('interests',['interest'=>$interest]);
         }
         else
             return redirect()->back();
@@ -59,7 +59,7 @@ class InterestController extends Controller
             else
                 $message="Interest has been created!";
 
-            return redirect()->route('showInterest',[$createdInterest])->with('message',$message);
+            return redirect()->route('showInterest',[$createdInterest,"id={$createdInterest}"])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -79,7 +79,7 @@ class InterestController extends Controller
             else
                 $message="Interest has been updated!";
 
-            return redirect()->route('showInterest',[$id])->with('message',$message);
+            return redirect()->route('showInterest',[$updatedInterest,"id={$updatedInterest}"])->with('message',$message);
         }
         else
             return redirect()->back();

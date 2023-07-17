@@ -59,7 +59,7 @@ class GroupController extends Controller
             else
                 $message="Group has been created!";
 
-            return redirect()->route('showGroup',[$groupIsCreated])->with('message',$message);
+            return redirect()->route('showGroup',[$groupIsCreated,"id={$groupIsCreated}"])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -79,7 +79,7 @@ class GroupController extends Controller
             else
                 $message="Group has been updated!";
 
-            return redirect()->route('showGroup',[$groupIsUpdated])->with('message',$message);
+            return redirect()->route('showGroup',[$groupIsUpdated,"id=$groupIsUpdated"])->with('message',$message);
         }
         else
             return redirect()->back();
