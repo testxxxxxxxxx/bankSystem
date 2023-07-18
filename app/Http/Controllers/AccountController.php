@@ -46,6 +46,19 @@ class AccountController extends Controller
             $account=$this->accountService->getUserAccount((int)$id);
 
             return view('accounts',['account'=>$account]);
+
+        }
+        else
+            return redirect()->back();
+
+    }
+    public function redirect(IdRequest $idRequest)
+    {
+        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
+        {
+            $id=$idRequest->input('id');
+
+            return redirect()->route('showUserAccount',[$id,"id={$id}"]);
         }
         else
             return redirect()->back();
@@ -65,7 +78,7 @@ class AccountController extends Controller
             else
                 $message="Your account has been created!"; 
 
-            return redirect()->route('showUserAccount',[$accountIsCreated,"id={$accountIsCreated}"])->with('message',$message);
+            return redirect()->route('redirect',["id"=>$accountIsCreated])->with('message',$message);
         }
         else
             return redirect()->back();
