@@ -1,5 +1,21 @@
 import './bootstrap';
 import $ from 'jquery';
+import { createApp } from 'vue';
+import App from './App.vue';
+
+createApp(App,{
+
+    data(){
+
+        return {
+
+            text: "Hello"
+
+        }
+
+    }
+
+}).mount("#app");
 
 $(()=>{
 

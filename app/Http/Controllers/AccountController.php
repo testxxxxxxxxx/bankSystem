@@ -46,19 +46,6 @@ class AccountController extends Controller
             $account=$this->accountService->getUserAccount((int)$id);
 
             return view('accounts',['account'=>$account]);
-
-        }
-        else
-            return redirect()->back();
-
-    }
-    public function redirect(IdRequest $idRequest)
-    {
-        if(Auth::check() && $this->privilegesService->checkPrivileges((int)self::ID,Auth::id()))
-        {
-            $id=$idRequest->input('id');
-
-            return redirect()->route('showUserAccount',[$id,"id={$id}"]);
         }
         else
             return redirect()->back();
@@ -72,13 +59,14 @@ class AccountController extends Controller
             $userId=Auth::id();
 
             $accountIsCreated=$this->accountService->createAccount(0,(int)$typeOfAccount,(int)$userId);
+            $account=$this->accountService->getUserAccount((int)$userId);
 
             if($accountIsCreated<0)
                 $message="Your account has not been created!";
             else
                 $message="Your account has been created!"; 
 
-            return redirect()->route('redirect',["id"=>$accountIsCreated])->with('message',$message);
+            return redirect()->route('showUserAccount',[$accountIsCreated,"id=$accountIsCreated"])->with('message',$message);
         }
         else
             return redirect()->back();
@@ -119,7 +107,7 @@ class AccountController extends Controller
             else
                 $message="Your account has been deleted!";
 
-            return redirect()->route('showUserAccount',[$accountIsDeleted])->with('message',$message);
+            return redirect()->route('showAccounts')->with('message',$message);
         }
         else
             return redirect()->back();
