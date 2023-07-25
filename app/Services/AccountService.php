@@ -101,7 +101,7 @@ class AccountService
     {
         $account=Account::query()->where('id',$id)->get($column)->toArray();
 
-        return $account;
+        return $account[0][$column];
     }
 
 }

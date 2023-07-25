@@ -13,6 +13,8 @@ use App\Services\GroupService;
 use App\Services\PrivilegesService;
 use App\Services\UserService;
 use App\Services\ControllerService;
+use App\Services\TimerService;
+use App\Services\CommisionService;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TypesOfAccountController;
 use App\Http\Controllers\InterestController;
@@ -74,6 +76,14 @@ class AppServiceProvider extends ServiceProvider
                     TransferController::class,
 
             ]);
+        });
+        $this->app->bind(TimerService::class,function($app){
+
+            return new TimerService(countDay: 30);
+        });
+        $this->app->bind(CommisionService::class,function($app){
+
+            return new CommisionService($app->make(TransferService::class),$app->make(InterestService::class));
         });
 
     }

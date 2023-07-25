@@ -11,11 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransferService
 {
-    private object $dateTime;
-    private object $accountService;
-    private object $transactionService;
-
-    public function __construct(DateTime $dateTime,AccountService $accountService,TransactionService $transactionService)
+    public function __construct(private DateTime $dateTime,private AccountService $accountService,private TransactionService $transactionService)
     {
         $this->dateTime=$dateTime;
         $this->accountService=$accountService;
@@ -63,7 +59,7 @@ class TransferService
 
     */
 
-    public function getCurrentTime(): string 
+    public function getCurrentTime(): string
     {
 
         return $this->dateTime->format("H:i:S");
@@ -75,7 +71,7 @@ class TransferService
 
     */
 
-    private function getBalance(int $id): float
+    public function getBalance(int $id): float
     {
 
         return (float)$this->accountService->getUserInformation($id,'balance')[0]['balance'];
@@ -87,10 +83,10 @@ class TransferService
 
     */
 
-    private function saveCurrentBalance(int $id,float $balance): int 
+    public function saveCurrentBalance(int $id,float $balance): int 
     {
-        $typeOfAccount=(int)$this->accountService->getUserBalance($id,'typeOfAccount')[0]['typeOfAccount'];
-        $userId=(int)$this->accountService->getUserInformation($id,'user_id')[0]['user_id'];
+        $typeOfAccount=(int)$this->accountService->getUserInformation($id,'typeOfAccount');
+        $userId=(int)$this->accountService->getUserInformation($id,'user_id');
 
         return $this->accountService->updateAccount($id,$balance,$typeOfAccount,$userId);
     }

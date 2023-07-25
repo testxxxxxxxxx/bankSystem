@@ -33,15 +33,15 @@ class InterestService
 
     /*
 
-        gets intrest
+        gets interest value
 
     */
 
-    public function getInterest(int $id): Collection | null 
+    public function getInterest(int $id): array | null 
     {
-        $intrest=Interest::query()->findOrFail($id)->get();
+        $interest=Interest::query()->findOrFail($id)->get()->toArray();
 
-        return $intrest;
+        return $interest[0]['value'];
     }
 
     /*
@@ -69,9 +69,9 @@ class InterestService
 
     public function updateInterest(int $id,float $value): int 
     {
-        $intrest=Interest::query()->where('id',$id)->update(['value'=>$value]);
+        $interest=Interest::query()->where('id',$id)->update(['value'=>$value]);
 
-        return $intrest;
+        return $interest;
     }
 
     /*
@@ -82,9 +82,9 @@ class InterestService
 
     public function deleteInterest(int $id): int 
     {
-        $intrest=Interest::query()->where('id',$id)->delete();
+        $interest=Interest::query()->where('id',$id)->delete();
 
-        return $intrest;
+        return $interest;
     }
 
 }
