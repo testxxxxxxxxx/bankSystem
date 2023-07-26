@@ -12,10 +12,14 @@ class TimerService
 
     }
 
+    // measure a time
+
     public function measureTime(int $start,int $stop): int 
     {
 
         return ($stop - $start);
     }
+
+    // checkTime
 
 }

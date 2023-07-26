@@ -10,7 +10,7 @@ use App\Services\TimerService;
 
 class CommisionService
 {
-    public function __construct(private TransferService $transferService,private InterestService $interestService)
+    public function __construct(private TransferService $transferService,private InterestService $interestService,private TimerService $timerService)
     {
         $this->transferService=$transferService;
         $this->interestService=$interestService;

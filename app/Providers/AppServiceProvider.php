@@ -83,7 +83,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(CommisionService::class,function($app){
 
-            return new CommisionService($app->make(TransferService::class),$app->make(InterestService::class));
+            return new CommisionService($app->make(TransferService::class),$app->make(InterestService::class),$app->make(TimerService::class));
         });
 
     }
