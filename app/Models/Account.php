@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\typesOfAccount;
 use App\Models\Transaction;
+use App\Models\DepositIncluded;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -38,6 +39,11 @@ class Account extends Model
     {
 
         return $this->hasMany(Transaction::class,'from');
+    }
+    public function depositIncluded(): HasMany
+    {
+
+        return $this->hasMany(DepositIncluded::class);
     }
 
 }

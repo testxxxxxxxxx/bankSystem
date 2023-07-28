@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\typesOfAccount;
+use App\Models\DepositIncluded;
 
 class Interest extends Model
 {
@@ -23,6 +24,11 @@ class Interest extends Model
     {
 
         return $this->hasMany(typesOfAccount::class);
+    }
+    public function depositIncluded(): HasMany
+    {
+
+        return $this->hasMany(DepositIncluded::class);
     }
 
 }

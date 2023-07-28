@@ -15,6 +15,7 @@ use App\Services\UserService;
 use App\Services\ControllerService;
 use App\Services\TimerService;
 use App\Services\CommisionService;
+use App\Services\DepositIncludedService;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TypesOfAccountController;
 use App\Http\Controllers\InterestController;
@@ -84,6 +85,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CommisionService::class,function($app){
 
             return new CommisionService($app->make(TransferService::class),$app->make(InterestService::class),$app->make(TimerService::class));
+        });
+        $this->app->bind(DepositIncludedService::class,function($app){
+
+            return new DepositIncludedService(id: 0);
         });
 
     }

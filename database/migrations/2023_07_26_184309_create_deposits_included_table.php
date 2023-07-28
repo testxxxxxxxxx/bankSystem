@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('deposits_included', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('interest_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('account_id')->unsigned();
             $table->date('start')->nullable(false);
             $table->date('stop')->nullable(false);
             $table->timestamps();
@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::table('deposits_included', function (Blueprint $table) {
 
             $table->foreign('interest_id')->references('id')->on('interests');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('account_id')->references('id')->on('accounts');
 
         });
 
