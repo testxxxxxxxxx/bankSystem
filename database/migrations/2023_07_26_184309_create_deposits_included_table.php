@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('interest_id')->unsigned();
             $table->bigInteger('account_id')->unsigned();
-            $table->date('start')->nullable(false);
-            $table->date('stop')->nullable(false);
+            $table->timestamp('start')->nullable(false);
+            $table->timestamp('stop')->nullable(false);
             $table->timestamps();
         });
 

@@ -47,6 +47,19 @@ class AccountService
 
     /*
 
+        gets a interest id
+
+    */
+
+    public function getInterest(int $accountId): array | null 
+    {
+        $interest=Account::query()->where('id',$accountId)->get('interest_id')->toArray();
+
+        return $interest[0]['interest_id'];
+    }
+
+    /*
+
         creates a new account
 
     */
@@ -74,6 +87,13 @@ class AccountService
     public function updateAccount(int $id,float $balance,int $typeOfAccount,int $userId): int
     {
         $account=Account::query()->where('id',$id)->update(['balance'=>$balance,'typeOfAccount'=>$typeOfAccount,'user_id'=>$userId]);
+
+        return $account;
+    }
+
+    public function updateBalance(int $id,float $balance): int
+    {
+        $account=Account::query()->where('id',$id)->update(['balance'=>$balance]);
 
         return $account;
     }

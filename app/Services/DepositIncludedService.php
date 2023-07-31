@@ -52,9 +52,9 @@ class DepositIncludedService
 
         return $deposit;
     }
-    public function update(int $id,int $interestId,int $accountId,int $start,int $stop): int 
+    public function update(int $accountId,int $start,int $stop): int 
     {
-        $deposit=DepositIncluded::query()->where('id',$id)->update(['interest_id'=>$interestId,'account_id'=>$accountId,'start'=>$start,'stop'=>$stop]);
+        $deposit=DepositIncluded::query()->where('account_id',$accountId)->update(['start'=>$start,'stop'=>$stop]);
 
         return $deposit;
     }
