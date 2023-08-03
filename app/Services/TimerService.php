@@ -38,4 +38,20 @@ class TimerService
         return true;
     }
 
+    //gets current timestamp
+
+    public function getCurrentTime(): int 
+    {
+
+        return time();
+    }
+
+    //gets timestamp * countDay
+
+    public function getFutureTime(int $countDay): int 
+    {
+
+        return time()+(3600*24)*$countDay;
+    }
+
 }
