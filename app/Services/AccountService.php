@@ -51,7 +51,7 @@ class AccountService
 
     */
 
-    public function getInterest(int $accountId): array | null 
+    public function getInterest(int $accountId): float 
     {
         $interest=Account::query()->where('id',$accountId)->get('interest_id')->toArray();
 
@@ -122,6 +122,13 @@ class AccountService
         $account=Account::query()->where('id',$id)->get($column)->toArray();
 
         return $account[0][$column];
+    }
+
+    public function getNumberOfRecords(): int
+    {
+        $numberOfRecords=Account::query()->get()->count();
+
+        return $numberOfRecords;
     }
 
 }

@@ -8,17 +8,21 @@ use Illuminate\Http\Request;
 use App\Services\AccountService;
 use App\Services\PrivilegesService;
 use App\Services\TypesOfAccountService;
+use App\Services\DepositIncludedService;
+use App\Services\TimerService;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
     public CONST ID=1;
 
-    public function __construct(protected AccountService $accountService,protected PrivilegesService $privilegesService,protected TypesOfAccountService $typesOfAccountService)
+    public function __construct(protected AccountService $accountService,protected PrivilegesService $privilegesService,protected TypesOfAccountService $typesOfAccountService,private DepositIncludedService $depositIncludedService,private TimerService $timerService)
     {
         $this->accountService=$accountService;
         $this->privilegesService=$privilegesService;
         $this->typesOfAccountService=$typesOfAccountService;
+        $this->depositIncludedService=$depositIncludedService;
+        $this->timerService=$timerService;
 
     }
 
@@ -59,9 +63,10 @@ class AccountController extends Controller
             $userId=Auth::id();
 
             $accountIsCreated=$this->accountService->createAccount(0,(int)$typeOfAccount,(int)$userId);
-            $account=$this->accountService->getUserAccount((int)$userId);
+            $interestId=$this->accountService->getInterest($accountIsCreated);
+            $depositIsCreated=$this->depositIncludedService->create($interestId,$accountIsCreated,$this->timerService->getCurrentTime(),$this->timerService->getFutureTime($this->timerService->countDay));
 
-            if($accountIsCreated<0)
+            if($accountIsCreated<1)
                 $message="Your account has not been created!";
             else
                 $message="Your account has been created!"; 

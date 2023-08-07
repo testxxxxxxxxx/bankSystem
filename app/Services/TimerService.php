@@ -8,7 +8,7 @@ use App\Services\DepositIncludedService;
 
 class TimerService
 {
-    public function __construct(private int $countDay,private DepositIncludedService $depositIncludedService)
+    public function __construct(public int $countDay,private DepositIncludedService $depositIncludedService)
     {
         $this->countDay=$countDay;
         $this->depositIncludedService=$depositIncludedService;

@@ -41,7 +41,7 @@ class CommisionService
 
         $start=$this->timerService->getCurrentTime(); //current timestamp
 
-        $stop=$this->timerService->getFutureTime(30); //timestamp * countDay
+        $stop=$this->timerService->getFutureTime($this->timerService->countDay); //timestamp * countDay
 
         $dataIsSaved=$this->accountService->updateBalance($accountId,$amount) && $this->depositIncludedService->update($accountId,$start,$stop);
 

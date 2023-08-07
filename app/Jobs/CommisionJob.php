@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Services\AccountService;
 use App\Services\CommisionService;
 
 class CommisionJob implements ShouldQueue
@@ -25,9 +26,9 @@ class CommisionJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(CommisionService $commisionService): void
+    public function handle(CommisionService $commisionService,AccountService $accountService): void
     {
-        for($i=0;$i<100;$i++)
+        for($i=1;$i<$accountService->getNumberOfRecords();$i++)
         {
             $amountIsSaved=$commisionService->saveAmount($i);
 
