@@ -1,4 +1,4 @@
-<template>
+<template v-bind:typesOfAccounts="{{ $typesOfAccounts }}">
 
     <div class="row form-group">
 
