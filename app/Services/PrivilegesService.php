@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Services\GroupService;
 use App\Services\UserService;
 use App\Models\Privileges;
+use Illuminate\Database\Eloquent\Model;
 
 class PrivilegesService
 {
@@ -23,6 +24,17 @@ class PrivilegesService
 
         return (int)$privileges[0]['group_id'];
     }
+    public function createPrivileges(int $contorllerId,int $groupId): Model | null 
+    {
+        $privileges=Privileges::query()->create([
+
+            "controller_id"=>$contorllerId,
+            "group_id"=>$groupId,
+
+        ]);
+
+        return $privileges;
+    }
     public function updatePrivileges(int $id,int $contorllerId,int $groupId): int | null 
     {
         $privileges=Privileges::query()->where('id',$id)->update(['controler_id'=>$contorllerId,'group_id'=>$groupId]);
@@ -38,6 +50,12 @@ class PrivilegesService
             return false;
 
         return true;
+    }
+    public function countOfGroupId(int $groupId): int 
+    {
+        $countOfGroup=Privileges::query()->where('group_id',$groupId)->get()->count();
+
+        return $countOfGroup;
     }
 
 }

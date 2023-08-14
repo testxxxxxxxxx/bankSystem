@@ -23,5 +23,10 @@ class ControllerService
 
         return $this->controllers;
     }
+    public function countOfControllers(): int 
+    {
+
+        return count($this->controllers);
+    }
 
 }
