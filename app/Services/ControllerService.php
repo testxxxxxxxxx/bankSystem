@@ -23,6 +23,13 @@ class ControllerService
 
         return $this->controllers;
     }
+
+    /*
+
+        gets number of controllers array fields
+
+    */
+
     public function countOfControllers(): int 
     {
 
