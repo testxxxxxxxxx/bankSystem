@@ -50,7 +50,7 @@ class TransferService
     public function getCurrentDate(): string
     {
 
-        return $this->dateTime->format("d");
+        return $this->dateTime->format("Y-m-d");
     }
 
     /*
@@ -62,7 +62,7 @@ class TransferService
     public function getCurrentTime(): string
     {
 
-        return $this->dateTime->format("H:i:S");
+        return $this->dateTime->format("H:i:s");
     }
 
     /*
@@ -74,7 +74,7 @@ class TransferService
     public function getBalance(int $id): float
     {
 
-        return (float)$this->accountService->getUserInformation($id,'balance')[0]['balance'];
+        return (float)$this->accountService->getUserInformation($id,'balance');
     }
 
     /*

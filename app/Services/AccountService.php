@@ -117,7 +117,7 @@ class AccountService
 
     */
 
-    public function getUserInformation(int $id,string $column): array | null 
+    public function getUserInformation(int $id,string $column): float 
     {
         $account=Account::query()->where('id',$id)->get($column)->toArray();
 
