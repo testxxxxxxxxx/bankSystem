@@ -66,7 +66,7 @@ class AccountController extends Controller
             $interestId=$this->accountService->getInterest($accountIsCreated);
             $depositIsCreated=$this->depositIncludedService->create($interestId,$accountIsCreated,$this->timerService->getCurrentTime(),$this->timerService->getFutureTime($this->timerService->countDay));
 
-            if($accountIsCreated<1)
+            if($accountIsCreated<1 && $depositIsCreated)
                 $message="Your account has not been created!";
             else
                 $message="Your account has been created!"; 

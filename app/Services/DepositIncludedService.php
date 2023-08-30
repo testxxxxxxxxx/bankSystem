@@ -27,13 +27,13 @@ class DepositIncludedService
 
         return $accountId[0]['account_id'];
     }
-    public function getStart(int $id): array | null 
+    public function getStart(int $id): float
     {
         $start=DepositIncluded::query()->find($id)->get('start')->toArray();
 
         return $start[0]['start'];
     }
-    public function getStop(int $id): array | null 
+    public function getStop(int $id): float 
     {
         $stop=DepositIncluded::query()->find($id)->get('stop')->toArray();
 
