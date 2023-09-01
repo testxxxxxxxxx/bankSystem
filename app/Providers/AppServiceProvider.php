@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(PrivilegesService::class,function($app){
 
-            return new PrivilegesService($app->make(GroupService::class),$app->make(UserService::class));
+            return new PrivilegesService($app->make(GroupService::class),$app->make(UserService::class),$app->make(ControllerService::class));
         });
         $this->app->bind(UserService::class,function($app){
 
