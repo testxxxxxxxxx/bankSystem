@@ -28,9 +28,9 @@ class CommisionJob implements ShouldQueue
      */
     public function handle(CommisionService $commisionService,AccountService $accountService): void
     {
-        for($i=1;$i<$accountService->getNumberOfRecords();$i++)
+        for($i=1; $i<$accountService->getNumberOfRecords(); $i++)
         {
-            $amountIsSaved=$commisionService->saveAmount($i);
+            $amountIsSaved = $commisionService->saveAmount($i);
 
         }
 
