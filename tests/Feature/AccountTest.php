@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Services\AccountService;
 use App\Services\DepositIncludedService;
 use App\Services\TimerService;
+use \DateTime;
 
 class AccountTest extends TestCase
 {
@@ -16,12 +17,12 @@ class AccountTest extends TestCase
      */
     public function test_example(): void
     {
-        $accountService = app(AccountService::class,["i" => 0]);
-        $depositIncludedService = app(DepositIncludedService::class,["id" => 0]);
-        $timerService = new TimerService(30,$depositIncludedService);
+        $accountService = app(AccountService::class, ["i" => 0]);
+        $depositIncludedService = app(DepositIncludedService::class, ["id" => 0]);
+        $timerService = app(TimerService::class, ["countDay" => 30, $depositIncludedService, app(DateTime::class)]);
 
-        $accountIsCreated = $accountService->createAccount(0,2,1);
-        $depositeIsCreated = $depositIncludedService->create(1,1,$timerService->getCurrentTime(),$timerService->getFutureTime(30));
+        $accountIsCreated = $accountService->createAccount(0, 2, 1);
+        $depositeIsCreated = $depositIncludedService->create(1, 2, $timerService->convertTime($timerService->getCurrentTime(), 'Y-m-d H:i:s'), $timerService->convertTime($timerService->getFutureTime($timerService->countDay), 'Y-m-d H:i:s'));
 
         $state = $accountIsCreated && $depositeIsCreated;
 

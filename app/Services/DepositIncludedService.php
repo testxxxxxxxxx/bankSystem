@@ -23,44 +23,44 @@ class DepositIncludedService
     }
     public function getAccountId(int $id): array | null 
     {
-        $accountId=DepositIncluded::query()->find($id)->get('account_id')->toArray();
+        $accountId = DepositIncluded::query()->find($id)->get('account_id')->toArray();
 
         return $accountId[0]['account_id'];
     }
-    public function getStart(int $id): float
+    public function getStart(int $accountId): string
     {
-        $start=DepositIncluded::query()->find($id)->get('start')->toArray();
+        $start = DepositIncluded::query()->where('account_id', $accountId)->get('start')->toArray();
 
         return $start[0]['start'];
     }
-    public function getStop(int $id): float 
+    public function getStop(int $accountId): string 
     {
-        $stop=DepositIncluded::query()->find($id)->get('stop')->toArray();
+        $stop = DepositIncluded::query()->where('account_id', $accountId)->get('stop')->toArray();
 
         return $stop[0]['stop'];
     }
-    public function create(int $interestId,int $accountId,int $start,int $stop): Model | null 
+    public function create(int $interestId,int $accountId,string $start,string $stop): int
     {
         $deposit=DepositIncluded::query()->insertGetId([
 
-            'interest_id'=>$interestId,
-            'account_id'=>$accountId,
-            'start'=>$start,
-            'stop'=>$stop,
+            'interest_id' => $interestId,
+            'account_id' => $accountId,
+            'start' => $start,
+            'stop' => $stop,
 
         ]);
 
         return $deposit;
     }
-    public function update(int $accountId,int $start,int $stop): int 
+    public function update(int $accountId,string $start,string $stop): int 
     {
-        $deposit=DepositIncluded::query()->where('account_id',$accountId)->update(['start'=>$start,'stop'=>$stop]);
+        $deposit=DepositIncluded::query()->where('account_id', $accountId)->update(['start' => $start, 'stop' => $stop]);
 
         return $deposit;
     }
     public function delete(int $id): int 
     {
-        $deposit=DepositIncluded::query()->where('id',$id)->delete();
+        $deposit=DepositIncluded::query()->where('id', $id)->delete();
 
         return $deposit;
     }

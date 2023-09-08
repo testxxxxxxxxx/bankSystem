@@ -80,7 +80,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(TimerService::class,function($app){
 
-            return new TimerService(30,$app->make(DepositIncludedService::class));
+            return new TimerService(30,$app->make(DepositIncludedService::class),$app->make(DateTime::class));
         });
         $this->app->bind(CommisionService::class,function($app){
 
