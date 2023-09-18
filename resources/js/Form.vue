@@ -21,6 +21,8 @@
 
     export default {
 
+        name: 'Form',
+
         setup(){
 
             const text="create";

@@ -22,8 +22,8 @@ class TypesOfAccountFactory extends Factory
     {
         return [
 
-            'name'=>Str::random(5),
-            'interest_id'=>fake()->randomDigit(),
+            'name' => Str::random(5),
+            'interest_id' => fake()->randomDigit(),
 
         ];
 

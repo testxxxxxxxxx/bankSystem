@@ -8,24 +8,29 @@
 
     </div>
 
-    <Form/>
+    <form></form>
+    <login-form></login-form>
+
 
 </template>
 <script>
 
     import Form from './Form.vue';
+    import LoginForm from './LoginForm.vue';
 
     export default {
 
+        name: 'App',
         components: {
 
-            Form
+            'form': Form,
+            'login-form': LoginForm
 
         },
         setup(){
             
-            const text="Siema"
-            const isTrue=true;
+            const text = "Siema"
+            const isTrue = true;
 
             return{
 
